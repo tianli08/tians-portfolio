@@ -4,10 +4,20 @@
   --font-sans: "Satoshi", "Courier New", monospace;
 }
 
+::selection {
+  background-color: #e1e2e3;
+  color: #000000;
+}
+
+::-moz-selection {
+  background-color: #e1e2e3;
+  color: #000000;
+}
+
 html, body, #root {
   height: 100%;
   width: 100%;
   margin: 0;
   padding: 0;
-  background-color: white; /* Dark background so white text shows */
+  background-color: white;
 }

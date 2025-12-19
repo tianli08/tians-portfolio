@@ -83,7 +83,7 @@ function App() {
         alt="Main Photo"
       />
 
-      <div className="fixed top-8 right-3 sm:right-4 md:right-5 lg:right-6 uppercase z-50 flex flex-col items-end space-y-2 font-['Courier_New',_monospace]">
+      <div className="fixed top-3 right-3 sm:right-4 sm:top-4 md:right-5 md:top-5 lg:right-6 lg:top-6 uppercase z-50 flex flex-col items-end space-y-2 font-['Courier_New',_monospace]">
         {sections.map((section) => (
           <div
             key={section.id}
@@ -155,7 +155,8 @@ function App() {
                     </a>
                   </p>
                   <p>
-                    <a href="https://www.linkedin.com/in/tianli181/">
+                    <a href="https://www.linkedin.com/in/tianli181/"
+                    className="text-[2.5vw] sm:text-base">
                       https://www.linkedin.com/in/tianli181/
                     </a>
                   </p>

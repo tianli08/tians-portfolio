@@ -22,26 +22,27 @@ function App() {
   return (
     <div className="relative h-screen w-screen overflow-hidden">
       <div
-        className=
-        {`
+        className={`
           absolute top-1/2 
           left-1/2 
-          -translate-x-1/2 
-          -translate-y-1/2 
+          -translate-x-[95%]
+          -translate-y-[65%]
           z-20 
           transition-all 
           ${nameOpacityClass} 
           
-          /* 1. Sync Text Size to Image Height (using vh) */
-          text-[4vh] 
-          sm:text-[5vh]
-          lg:text-[7vh] 
+          text-[5vh] 
+          sm:text-[6vh]
+          md:text-[7vh]
+          lg:text-[8vh] 
           leading-none
 
-          /* 2. Sync Padding to Image Height (using vh) */
-          pl-[12vh]
-          sm:pl-[15vh]
-          lg:pl-[22vh]
+          sm:-translate-x-[95%]
+          sm:-translate-y-[65%]
+          md:-translate-x-[100%]
+          md:-translate-y-[125%]
+          lg:-translate-x-[100%]
+          lg:-translate-y-[125%]
 
           font-medium 
           whitespace-nowrap
@@ -53,32 +54,51 @@ function App() {
         Li
       </div>
       <img
-          src="photo.png"
-          className={`
-            absolute bottom-0 
-            left-1/2 
-            -translate-x-1/2 
-            z-10 
-            h-[80vh] 
-            sm:h-[90vh] 
-            lg:h-[115vh] 
-            w-auto 
-            max-w-none 
-            ${nameOpacityClass}
-          `}
-          alt="Main Photo"
-        />
+        src="photo2.png"
+        className={`
+          absolute top-1/2 
+          left-1/2 
+          -translate-x-[25%]
+          -translate-y-[35%]
+          z-20 
+          transition-all 
+          ${nameOpacityClass}
 
-      <div className="fixed top-8 right-8 uppercase z-50 flex flex-col items-end space-y-2 font-['Courier_New',_monospace]">
+          sm:-translate-x-[25%]
+          sm:-translate-y-[35%]
+          md:-translate-x-[25%]
+          md:-translate-y-[45%]
+          lg:-translate-x-[25%]
+          lg:-translate-y-[45%]
+
+          h-[60vh] 
+          sm:h-[70vh] 
+          md:h-[90vh]
+          lg:h-[100vh] 
+
+          w-auto 
+          max-w-none 
+          
+        `}
+        alt="Main Photo"
+      />
+
+      <div className="fixed top-8 right-3 sm:right-4 md:right-5 lg:right-6 uppercase z-50 flex flex-col items-end space-y-2 font-['Courier_New',_monospace]">
         {sections.map((section) => (
           <div
             key={section.id}
             onClick={() => handleNavClick(section.id)}
-            className={`cursor-pointer transition-all duration-300 ${
+            className={`cursor-pointer transition-all duration-300
+              text-[1.6vh] 
+              sm:text-[1.7vh]
+              md:text-[1.8vh]
+              lg:text-[1.8vh] 
+              ${
               activeSection === section.id
                 ? "text-grey-400 underline decoration-1 underline-offset-4"
                 : "text-black opacity-65 hover:opacity-100 hover:underline hover:decoration-1 hover:underline-offset-4 transition-all"
-            }`}
+              }`
+            }
           >
             {section.title}
           </div>

@@ -1,23 +1,40 @@
-import { useState} from "react";
+import { useState } from "react";
 import "./App.css";
 
 const sections = [
   { id: "about", title: "about" },
   { id: "experience", title: "experience" },
   { id: "projects", title: "projects" },
+  { id: "articles", title: "articles" },
   { id: "links", title: "links" },
 ];
 
+const projects = [
+  { title: "static archive", description: "Designed a live monitor that tracks hyped items, keep tracks of profitable items using machine learning on trained datasets to properly notify useful data. Currently sold out." },
+  { title: "dashmind", description: "Built a Python automation system using PyMem and OpenCV to detect gameplay states, and level/attempt starts. Implemented a backtracking input-search algorithm to optimize timings and automate completion of difficult levels." },
+  { title: "(O)inference", description: "Neural network inference optimization done with CUDA." },
+  { title: "hyperpad", description: "Functional embedded xbox controller for disabilities done on Arduino and C++. No latency/fully wireless." },
+];
+
+const selectedProjectTitlePosition =
+  "fixed left-1/2 top-[38%] -translate-x-1/2";
+
 function App() {
   const [activeSection, setActiveSection] = useState<string | null>(null);
+  const [selectedProject, setSelectedProject] = useState<
+    (typeof projects)[number] | null
+  >(null);
 
   const handleNavClick = (sectionId: string) => {
+    setSelectedProject(null);
     setActiveSection((prevSection) =>
       prevSection === sectionId ? null : sectionId
     );
   };
 
   const nameOpacityClass = activeSection === null ? "opacity-100" : "opacity-0";
+  const isProjectDetail =
+    activeSection === "projects" && selectedProject !== null;
 
   return (
     <div className="relative h-screen w-screen overflow-hidden">
@@ -108,7 +125,26 @@ function App() {
       {activeSection !== null && (
         <div className="fixed inset-0 z-40 grid place-items-center px-6 text-center font-['Courier_New',_monospace]">
           <div className="max-w-3xl">
-            <h2>{sections.find((s) => s.id === activeSection)?.title}</h2>
+            {isProjectDetail && (
+              <div className={selectedProjectTitlePosition}>
+                <p>{selectedProject.title}</p>
+              </div>
+            )}
+
+            <h2>
+              {isProjectDetail
+                ? selectedProject.description
+                : sections.find((s) => s.id === activeSection)?.title}
+            </h2>
+            {isProjectDetail && (
+              <button
+                type="button"
+                onClick={() => setSelectedProject(null)}
+                className="mt-2 cursor-pointer text-black opacity-65 transition-all duration-300 hover:opacity-100 hover:underline hover:decoration-1 hover:underline-offset-4"
+              >
+                back
+              </button>
+            )}
 
             {activeSection === "about" && (
               <div>
@@ -136,11 +172,33 @@ function App() {
 
             {activeSection === "projects" && (
               <div>
+                {!isProjectDetail && (
+                  <>
+                    <br />
+                  <ul>
+                    {projects.map((project) => (
+                      <li key={project.title}>
+                        <button
+                          type="button"
+                          onClick={() => setSelectedProject(project)}
+                          className="cursor-pointer text-black opacity-65 transition-all duration-300 hover:opacity-100 hover:underline hover:decoration-1 hover:underline-offset-4"
+                        >
+                          {project.title}
+                        </button>
+                      </li>
+                    ))}
+                  </ul>
+                  </>
+                )}
+              </div>
+            )}
+
+            {activeSection === "articles" && (
+              <div>
                 <br />
                 <ul>
-                  <li>cv geometry dash game automater</li>
-                  <li>embedded xbox controller</li>
-                  <li>67 neuro network detector</li>
+                  <li>multi model orchestration: how to reduce limits</li>
+                  <li>memory vs cv for game test</li>
                 </ul>
               </div>
             )}
@@ -167,6 +225,7 @@ function App() {
           </div>
         </div>
       )}
+
     </div>
   );
 }

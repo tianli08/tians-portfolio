@@ -2,22 +2,38 @@ import { useState } from "react";
 import "./App.css";
 
 const sections = [
-  { id: "about", title: "about" },
-  { id: "experience", title: "experience" },
-  { id: "projects", title: "projects" },
-  { id: "articles", title: "articles" },
-  { id: "links", title: "links" },
+  { id: "about", title: "About" },
+  { id: "experience", title: "Experience" },
+  { id: "projects", title: "Projects" },
+  { id: "articles", title: "Articles" },
+  { id: "links", title: "Links" },
 ];
 
 const projects = [
-  { title: "static archive", description: "Designed a live monitor that tracks hyped items, keep tracks of profitable items using machine learning on trained datasets to properly notify useful data. Currently sold out." },
-  { title: "dashmind", description: "Built a Python automation system using PyMem and OpenCV to detect gameplay states, and level/attempt starts. Implemented a backtracking input-search algorithm to optimize timings and automate completion of difficult levels." },
-  { title: "(O)inference", description: "Neural network inference optimization done with CUDA." },
-  { title: "hyperpad", description: "Functional embedded xbox controller for disabilities done on Arduino and C++. No latency/fully wireless." },
+  {
+    title: "Static Archive",
+    description: `Distributed SaaS application designed to automate the new listings of hype listings across global marketplaces like Mercari.
+Built machine learning pipeline for specifically trained on archival designers to act as a filter working on 85% of pieces.
+Currently sitting on $20,000 worth of customer spending.`,
+  },
+  {
+    title: "Dashmind",
+    description: `A geometry dash python automation system using PyMem and OpenCV to detect gameplay states, and level/attempt starts.
+Implemented a backtracking input-search algorithm to optimize timings and automate completion of difficult levels.`,
+  },
+  {
+    title: "(O)inference",
+    description: `Neural network inference optimization done with CUDA.`,
+  },
+  {
+    title: "Hyperpad",
+    description: `Functional embedded xbox controller for disabilities done on Arduino and C++.
+No latency/fully wireless along with solving real world problem of disabled tactility.`,
+  },
 ];
 
-const selectedProjectTitlePosition =
-  "fixed left-1/2 top-[38%] -translate-x-1/2";
+const sectionBodyClass = "mt-6 min-h-[12rem] w-full whitespace-pre-line text-center text-[1.05rem]";
+const sectionListClass = "m-0 list-none p-0";
 
 function App() {
   const [activeSection, setActiveSection] = useState<string | null>(null);
@@ -124,58 +140,49 @@ function App() {
 
       {activeSection !== null && (
         <div className="fixed inset-0 z-40 grid place-items-center px-6 text-center font-['Courier_New',_monospace]">
-          <div className="max-w-3xl">
-            {isProjectDetail && (
-              <div className={selectedProjectTitlePosition}>
-                <p>{selectedProject.title}</p>
-              </div>
-            )}
-
-            <h2>
+          <div className="flex h-[34vh] w-full max-w-3xl flex-col items-center justify-start">
+            <h2 className="min-h-[1.5rem] text-[1.25rem]">
               {isProjectDetail
-                ? selectedProject.description
+                ? selectedProject.title
                 : sections.find((s) => s.id === activeSection)?.title}
             </h2>
-            {isProjectDetail && (
-              <button
-                type="button"
-                onClick={() => setSelectedProject(null)}
-                className="mt-2 cursor-pointer text-black opacity-65 transition-all duration-300 hover:opacity-100 hover:underline hover:decoration-1 hover:underline-offset-4"
-              >
-                back
-              </button>
-            )}
 
             {activeSection === "about" && (
-              <div>
-                <br />
+              <div className={sectionBodyClass}>
                 <p>
                   Hi I'm tian a third year student studying at the university of
-                  Ottawa.
+                  Ottawa. I'm currently studying electrical engineering and computer science.
+                  Apart from coding I really all types of different music, arts, and sports!
+                  I am currently looking for summer 2027 internships. Feel free to reach out!
                 </p>
               </div>
             )}
 
             {activeSection === "experience" && (
-              <div>
-                <br />
+              <div className={sectionBodyClass}>
                 <p>Qualcomm - Systems Software Engineer Intern</p>
-                <ul className="">
-                  <p>
-                    Building internal LLM devtools, python automation for
-                    software and hardware validation, and automated log and
-                    debug parsers.
-                  </p>
-                </ul>
+                <p>
+                  Building internal LLM devtools, python automation for software
+                  and hardware validation, and automated log and debug parsers.
+                </p>
               </div>
             )}
 
             {activeSection === "projects" && (
-              <div>
-                {!isProjectDetail && (
+              <div className={sectionBodyClass}>
+                {isProjectDetail ? (
                   <>
-                    <br />
-                  <ul>
+                    <p>{selectedProject.description}</p>
+                    <button
+                      type="button"
+                      onClick={() => setSelectedProject(null)}
+                      className="mt-6 cursor-pointer text-black opacity-65 transition-all duration-300 hover:opacity-100 hover:underline hover:decoration-1 hover:underline-offset-4"
+                    >
+                      back
+                    </button>
+                  </>
+                ) : (
+                  <ul className={sectionListClass}>
                     {projects.map((project) => (
                       <li key={project.title}>
                         <button
@@ -188,15 +195,13 @@ function App() {
                       </li>
                     ))}
                   </ul>
-                  </>
                 )}
               </div>
             )}
 
             {activeSection === "articles" && (
-              <div>
-                <br />
-                <ul>
+              <div className={sectionBodyClass}>
+                <ul className={sectionListClass}>
                   <li>multi model orchestration: how to reduce limits</li>
                   <li>memory vs cv for game test</li>
                 </ul>
@@ -204,21 +209,22 @@ function App() {
             )}
 
             {activeSection === "links" && (
-              <div>
-                <br />
-                <ul>
-                  <p>
+              <div className={sectionBodyClass}>
+                <ul className={sectionListClass}>
+                  <li>
                     <a href="https://github.com/tianli08">
                       https://github.com/tianli08
                     </a>
-                  </p>
-                  <p>
-                    <a href="https://www.linkedin.com/in/tianli181/"
-                    className="text-[2.5vw] sm:text-base">
+                  </li>
+                  <li>
+                    <a
+                      href="https://www.linkedin.com/in/tianli181/"
+                      className="text-[2.5vw] sm:text-base"
+                    >
                       https://www.linkedin.com/in/tianli181/
                     </a>
-                  </p>
-                  <p>tli181@uottawa.ca</p>
+                  </li>
+                  <li>tli181@uottawa.ca</li>
                 </ul>
               </div>
             )}

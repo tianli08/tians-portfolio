@@ -32,7 +32,7 @@ No latency/fully wireless along with solving real world problem of disabled tact
   },
 ];
 
-const sectionBodyClass = "mt-6 min-h-[12rem] w-full whitespace-pre-line text-center text-[1.05rem]";
+const sectionBodyClass = "mt-6 min-h-[12rem] w-full whitespace-pre-line text-center text-[2vh] sm:text-[2.1vh] md:text-[2.2vh] lg:text-[2.2vh]";
 const sectionListClass = "m-0 list-none p-0";
 
 function App() {
@@ -141,7 +141,7 @@ function App() {
       {activeSection !== null && (
         <div className="fixed inset-0 z-40 grid place-items-center px-6 text-center font-['Courier_New',_monospace]">
           <div className="flex h-[34vh] w-full max-w-3xl flex-col items-center justify-start">
-            <h2 className="min-h-[1.5rem] text-[1.25rem]">
+            <h2 className="min-h-[1.5rem] text-[2.2vh] sm:text-[2.3vh] md:text-[2.4vh] lg:text-[2.4vh]">
               {isProjectDetail
                 ? selectedProject.title
                 : sections.find((s) => s.id === activeSection)?.title}
@@ -160,10 +160,16 @@ function App() {
 
             {activeSection === "experience" && (
               <div className={sectionBodyClass}>
-                <p>Qualcomm - Systems Software Engineer Intern</p>
+                <p>Qualcomm - AI Systems Software Engineer Intern</p>
                 <p>
-                  Building internal LLM devtools, python automation for software
-                  and hardware validation, and automated log and debug parsers.
+                  Building internal LLM devtools, multi-model orchestrators to replace manual workflows,
+                  and custom RAGs with multi retrieval system for internal team documentation.
+                </p>
+                <br />
+                <p>Qualcomm - Software Engineer Intern</p>
+                <p>
+                  Building python automation for software, firmware automation for SoC
+                  and hardware dumps, and automated log and debug parsers.
                 </p>
               </div>
             )}
@@ -217,10 +223,7 @@ function App() {
                     </a>
                   </li>
                   <li>
-                    <a
-                      href="https://www.linkedin.com/in/tianli181/"
-                      className="text-[2.5vw] sm:text-base"
-                    >
+                    <a href="https://www.linkedin.com/in/tianli181/">
                       https://www.linkedin.com/in/tianli181/
                     </a>
                   </li>

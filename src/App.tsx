@@ -59,8 +59,8 @@ function App() {
           absolute top-1/2 
           left-1/2 
           -translate-x-[95%]
-          -translate-y-[65%]
-          z-20 
+          -translate-y-[205%]
+          z-30
           transition-all 
           ${nameOpacityClass} 
           
@@ -71,7 +71,8 @@ function App() {
           leading-none
 
           sm:-translate-x-[95%]
-          sm:-translate-y-[65%]
+          sm:-translate-y-[205%]
+          md:z-20
           md:-translate-x-[100%]
           md:-translate-y-[125%]
           lg:-translate-x-[100%]
@@ -92,13 +93,13 @@ function App() {
           absolute top-1/2 
           left-1/2 
           -translate-x-[25%]
-          -translate-y-[35%]
+          -translate-y-[60%]
           z-20 
           transition-all 
           ${nameOpacityClass}
 
           sm:-translate-x-[25%]
-          sm:-translate-y-[35%]
+          sm:-translate-y-[60%]
           md:-translate-x-[25%]
           md:-translate-y-[45%]
           lg:-translate-x-[25%]
@@ -116,7 +117,7 @@ function App() {
         alt="Main Photo"
       />
 
-      <div className="fixed top-3 right-3 sm:right-4 sm:top-4 md:right-5 md:top-5 lg:right-6 lg:top-6 uppercase z-50 flex flex-col items-end space-y-2 font-['Courier_New',_monospace]">
+      <div className="fixed top-5 right-3 z-50 flex w-[calc(100vw-1.5rem)] flex-row items-center justify-end gap-x-4 whitespace-nowrap uppercase font-['Courier_New',_monospace] sm:right-4 sm:top-4 sm:w-[calc(100vw-2rem)] sm:gap-x-6 md:right-5 md:top-5 md:w-auto md:flex-col md:items-end md:gap-x-0 md:gap-y-2 lg:right-6 lg:top-6">
         {sections.map((section) => (
           <div
             key={section.id}
